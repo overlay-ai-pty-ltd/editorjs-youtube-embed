@@ -78,6 +78,7 @@ export default class YoutubeEmbed {
      */
     _createIframe(url){        
         const videoId = url.match(/(?<=v=)[a-zA-Z0-9_-]+(?=&?)/);
+        console.log("VIDEO ID:",videoId);
         if (videoId == null) {
             if (this.isEdited) {
                 this.wrapper.querySelector("input").classList.add("invalid");
