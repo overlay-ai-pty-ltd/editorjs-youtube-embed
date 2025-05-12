@@ -77,7 +77,13 @@ export default class YoutubeEmbed {
      * 
      */
     _createIframe(url){        
-        const videoId = url.match(/(?<=v=)[a-zA-Z0-9_-]+(?=&?)/);
+        const extractYouTubeVideoId = (url) => {
+            const match = url.match(
+              /(?:youtube\.com\/(?:.*v=|v\/|embed\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+            );
+            return match ? match[1] : null;
+          };
+        const videoId = extractYouTubeVideoId(url);
         console.log("VIDEO ID:",videoId);
         if (videoId == null) {
             if (this.isEdited) {
